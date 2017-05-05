@@ -7,6 +7,8 @@ const jsonParser = bodyParser.json();
 
 const {BlogPosts} = require('./models');
 
+const {Posts} = require('./models/posts');
+
 const app = express();
 
 BlogPosts.create("Blog Post 1", "Sample Post 1", "Adam", 2017);
@@ -17,7 +19,12 @@ BlogPosts.create("Blog Post 4", "Sample Post 4", "Adam", 2017);
 
 // Get Section
 router.get('/', (req, res) => {
-  res.json(BlogPosts.get());
+    Posts
+    .findOne()
+    .exec()
+    .then(Posts => {
+      res.json();
+    })
 });
 
 // Post Section
